@@ -38,7 +38,7 @@ namespace WebApplication2
 
 					// pobranie sekcji "test" + fallback na wypadek jej braku
 					var testVariableValue = configuration.GetSection("test")?.Value ?? "test not configured!";
-					await context.Response.WriteAsync("<p>(App Service) Test variable: " + testVariableValue + "</p><p>Passing tests!</p>");
+					await context.Response.WriteAsync("<p>(Ewa to dupeczka) Test variable: " + testVariableValue + "</p><p>Passing tests!</p>");
 				});
 			});
 		}
