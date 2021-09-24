@@ -32,14 +32,14 @@ namespace WebApplication2
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapGet("/", async context =>
-	{
-	 // dependency injection konfiguracji
-	 var configuration = context.RequestServices.GetService<IConfiguration>();
+				{
+					// dependency injection konfiguracji
+					var configuration = context.RequestServices.GetService<IConfiguration>();
 
-	 // pobranie sekcji "test" + fallback na wypadek jej braku
-	 var testVariableValue = configuration.GetSection("test")?.Value ?? "test not configured!";
-				 await context.Response.WriteAsync("Test variable " + testVariableValue);
-			 });
+					// pobranie sekcji "test" + fallback na wypadek jej braku
+					var testVariableValue = configuration.GetSection("test")?.Value ?? "test not configured!";
+					await context.Response.WriteAsync("Test variable " + testVariableValue);
+				});
 			});
 		}
 	}
