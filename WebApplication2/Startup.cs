@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace WebApplication2
 {
@@ -31,9 +32,14 @@ namespace WebApplication2
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapGet("/", async context =>
-				{
-					await context.Response.WriteAsync("Hello from CI/CD!");
-				});
+	{
+	 // dependency injection konfiguracji
+	 var configuration = context.RequestServices.GetService<IConfiguration>();
+
+	 // pobranie sekcji "test" + fallback na wypadek jej braku
+	 var testVariableValue = configuration.GetSection("test")?.Value ?? "test not configured!";
+				 await context.Response.WriteAsync("Test variable " + testVariableValue);
+			 });
 			});
 		}
 	}
